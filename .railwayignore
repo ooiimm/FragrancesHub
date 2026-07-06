@@ -1,0 +1,15 @@
+.git
+.env
+node_modules
+vendor
+storage/app/public/products
+storage/app/public/payments
+storage/app/public/promos
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+public/storage
+FragrancesHub
+api
+vercel.json

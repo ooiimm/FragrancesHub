@@ -7,6 +7,7 @@ if [ "${RUN_MIGRATIONS:-false}" = "true" ]; then
     php artisan migrate --force
 fi
 
+rm -rf public/storage
 php artisan storage:link || true
 php artisan config:cache
 php artisan route:cache || true

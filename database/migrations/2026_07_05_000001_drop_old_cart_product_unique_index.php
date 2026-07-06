@@ -51,6 +51,10 @@ return new class extends Migration
 
     private function indexExists(string $table, string $index): bool
     {
+        if (DB::getDriverName() !== 'mysql') {
+            return Schema::hasIndex($table, $index);
+        }
+
         $database = DB::getDatabaseName();
 
         return DB::table('information_schema.statistics')

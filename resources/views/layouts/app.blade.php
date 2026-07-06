@@ -400,7 +400,11 @@
                         </li>
                         <li><hr class="dropdown-divider my-1"></li>
                         <li>
-                            @php $promoCount = \App\Models\Product::where('is_active',1)->where('discount_percent','>',0)->count(); @endphp
+                            @php
+                                $promoCount = \Illuminate\Support\Facades\Schema::hasColumn('products', 'discount_percent')
+                                    ? \App\Models\Product::where('is_active', 1)->where('discount_percent', '>', 0)->count()
+                                    : 0;
+                            @endphp
                             <a class="dropdown-item rounded-3 py-2 d-flex align-items-center justify-content-between {{ request()->is('promo*') ? 'active' : '' }}"
                                href="{{ route('promo.index') }}"
                                style="font-size:.9rem;">

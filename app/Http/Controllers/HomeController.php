@@ -62,7 +62,6 @@ class HomeController extends Controller
                 'products.slug',
                 'products.description',
                 'products.price',
-                'products.discount_percent',
                 'products.stock',
                 'products.image',
                 'products.is_active',
@@ -70,6 +69,9 @@ class HomeController extends Controller
                 'products.created_at',
                 'products.updated_at'
             )
+            ->when(Schema::hasColumn('products', 'discount_percent'), function ($query) {
+                $query->groupBy('products.discount_percent');
+            })
             ->orderByDesc('total_sold')
             ->limit(3)
             ->get();
